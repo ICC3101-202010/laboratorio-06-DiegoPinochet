@@ -9,6 +9,7 @@ namespace Lab6_POO_Diego_Pinochet
     [Serializable]
     public class Area:Division
     {
+        private Dictionary<string, List<Departamento>> dicDepartamento;
         public Area(string Name)
         {
             this.Name = Name;

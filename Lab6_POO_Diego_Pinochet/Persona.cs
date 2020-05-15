@@ -8,11 +8,12 @@ namespace Lab6_POO_Diego_Pinochet
 {
     class Persona
     {
-        string name;
-        string lastName;
-        string rut;
-        string job;
+        private string name;
+        private string lastName;
+        private string rut;
+        private string job;
 
+        public string Name { get => name; set => name = value; }
         public Persona(string Name, string LastName, string Rut, string Job)
         {
             this.name = Name;
@@ -20,5 +21,6 @@ namespace Lab6_POO_Diego_Pinochet
             this.rut = Rut;
             this.job = Job;
         }
+
     }
 }

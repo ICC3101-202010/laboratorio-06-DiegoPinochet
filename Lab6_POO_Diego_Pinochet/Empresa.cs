@@ -14,12 +14,16 @@ namespace Lab6_POO_Diego_Pinochet
     {
         private string name;
         private string rut;
+        private List<Division> listDivision;
+
+
         
 
-        public Empresa(string Name, string Rut)
+        public Empresa(string Name, string Rut,List<Division> ListDivision)
         {
             this.name = Name;
             this.rut = Rut;
+            this.listDivision = ListDivision;
         }
         
         public static void SaveDivision(List<Division> listDivision)

@@ -16,6 +16,7 @@ namespace Lab6_POO_Diego_Pinochet
         static void Main(string[] args)
         {
             List<Empresa> listEmpresas = new List<Empresa>();
+            List<Division> listDivisiones = new List<Division>();
             string cargar_archivo;
             do
             {
@@ -23,7 +24,6 @@ namespace Lab6_POO_Diego_Pinochet
                 cargar_archivo = Console.ReadLine();
                 switch (cargar_archivo)
                 {
-
                     case "s":
                         try
                         {
@@ -47,7 +47,7 @@ namespace Lab6_POO_Diego_Pinochet
                                     Console.WriteLine("Ingrese el rut de la empresa: ");
                                     string Rut = Console.ReadLine();
 
-                                    listEmpresas.Add(new Empresa(nombre, Rut));
+                                    listEmpresas.Add(new Empresa(nombre, Rut, listDivisiones));
                                     Save_Empresa_Main(listEmpresas);
                                     break;
                                 case "n":
@@ -64,7 +64,7 @@ namespace Lab6_POO_Diego_Pinochet
                         //Console.WriteLine("Ingrese la primera división de su empresa (Area/Departamentos/Secciones/Bloques): ");
                         //string division_empresa = Console.ReadLine();
                         
-                        listEmpresas.Add(new Empresa(name, rut));
+                        listEmpresas.Add(new Empresa(name, rut, listDivisiones));
                         Save_Empresa_Main(listEmpresas);
                         break;
                 }
