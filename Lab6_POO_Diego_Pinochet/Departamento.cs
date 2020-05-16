@@ -9,14 +9,11 @@ namespace Lab6_POO_Diego_Pinochet
     [Serializable]
     public class Departamento : Division
     {
-        private List<Seccion> listSeccion;
-        private Persona encargado;
-        public Departamento(string Name, Persona Encargado)
+        
+        public Departamento(string Name)
         {
             this.Name = Name;
-            this.encargado = Encargado;
+            
         }
-
-        public List<Seccion> ListSeccion { get => listSeccion; set => listSeccion = value; }
     }
 }

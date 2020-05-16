@@ -14,5 +14,11 @@ namespace Lab6_POO_Diego_Pinochet
 
         private string name;
         public string Name { get => name; set => name = value; }
+        
+
+        public override string ToString()
+        {
+            return "Nombre Division: " + name;
+        }
     }
 }

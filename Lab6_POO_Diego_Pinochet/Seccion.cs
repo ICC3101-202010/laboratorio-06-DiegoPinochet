@@ -9,14 +9,9 @@ namespace Lab6_POO_Diego_Pinochet
     [Serializable]
     public class Seccion:Division
     {
-        private List<Bloque> listBloque;
-        private Persona encargado;
-        public Seccion(string Name, Persona Encargado)
+        public Seccion(string Name)
         {
             this.Name = Name;
-            this.encargado = Encargado;
         }
-
-        public List<Bloque> ListBloque { get => listBloque; set => listBloque = value; }
     }
 }

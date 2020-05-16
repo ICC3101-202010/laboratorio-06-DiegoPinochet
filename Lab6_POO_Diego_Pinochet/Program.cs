@@ -17,8 +17,6 @@ namespace Lab6_POO_Diego_Pinochet
         static void Main(string[] args)
         {
             List<Empresa> listEmpresas = new List<Empresa>();
-            List<Division> listDivisiones = new List<Division>();
-            Division division = new Division();
             string cargar_archivo;
             do
             {
@@ -31,13 +29,56 @@ namespace Lab6_POO_Diego_Pinochet
                         {
                             Console.WriteLine("Buscando archivo...");
                             Thread.Sleep(1000);
-                            FileStream f = File.Open("empresas.bin",FileMode.Open);
+                            FileStream f = File.Open("empresas.bin", FileMode.Open);
                             f.Close();
 
                             listEmpresas = Load_Empresa_Main();
-                            foreach(Empresa empresa in listEmpresas)
+                            foreach (Empresa empresa in listEmpresas)
                             {
-                                Console.WriteLine(empresa.Name + " " + empresa.Rut);
+                                Console.WriteLine("--------------------------------------------------------------------");
+                                Console.WriteLine(empresa.ToString());
+                                Console.Write("\n");
+                                int contA = 0;
+                                int contD = 0;
+                                int contS = 0;
+                                int contB = 0;
+                                foreach (Division division in empresa.ListDivision)
+                                {
+
+                                    //if (contA == 0 && contB == 0 && contD == 0 && contS == 0) //Agregar alguna manera para que no se repitan las mismas divisiones
+                                    {
+                                        Console.Write(division.ToString());
+                                        Console.WriteLine("\nEncargados: ");
+                                        foreach (Persona persona in empresa.ListPersona)
+                                        {
+
+                                            if (persona.Job == division.Name && (persona.Personal == "Encargado" || persona.Personal == null))
+                                            {
+                                                Console.Write(" ---->" + persona.ToString() + "\n\n");
+                                            }
+
+                                        }
+                                        if (division.Name == "Bloque")
+                                        {
+                                            Console.WriteLine("\n Personal: ");
+                                            foreach (Persona persona in empresa.ListPersona)
+                                            {
+                                                if (persona.Job == division.Name && persona.Personal == "Personal")
+                                                {
+                                                    Console.WriteLine("---->" + persona.ToString() + "\n\n");
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                    if (division.Name == "Bloque") contB++;
+                                    else if (division.Name == "Seccion") contS++;
+                                    else if (division.Name == "Area") contA++;
+                                    else contD++;
+
+
+                                }
+                                Console.WriteLine("--------------------------------------------------------------------");
                             }
                         }
                         catch (FileNotFoundException e)
@@ -48,11 +89,102 @@ namespace Lab6_POO_Diego_Pinochet
                             switch (open)
                             {
                                 case "s":
+                                    List<Division> listDivisiones = new List<Division>();
+                                    List<Persona> listPersonas = new List<Persona>();
                                     Console.WriteLine("Ingrese el nombre de la empresa: ");
                                     string nombre = Console.ReadLine();
                                     Console.WriteLine("Ingrese el rut de la empresa: ");
                                     string Rut = Console.ReadLine();
-                                    listEmpresas.Add(new Empresa(nombre, Rut, listDivisiones));
+                                    bool x = true;
+                                    do
+                                    {
+                                        Console.WriteLine("Ingrese la división de su empresa (Area/Departamento/Seccion/Bloque): ");
+                                        string primeraDiv = Console.ReadLine();
+                                        string n;
+                                        string ln;
+                                        string r;
+                                        string pert;
+                                        int cant = 0;
+                                        switch (primeraDiv)
+                                        {
+                                            case "Area":
+                                                Console.WriteLine("Cuantas areas quiere añadir?");
+                                                cant = int.Parse(Console.ReadLine());
+                                                for (int i = 0; i < cant; i++)
+                                                {
+                                                    Console.WriteLine("Dame el nombre, apellido y rut del encargado.");
+                                                    n = Console.ReadLine();
+                                                    ln = Console.ReadLine();
+                                                    r = Console.ReadLine();
+                                                    Persona personaArea = new Persona(n, ln, r, "Area", null, null);
+                                                    Area area = new Area("Area");
+                                                    listPersonas.Add(personaArea);
+                                                    listDivisiones.Add(area);
+                                                }
+                                                break;
+                                            case "Departamento":
+                                                Console.WriteLine("Cuantas areas quiere añadir?");
+                                                cant = int.Parse(Console.ReadLine());
+                                                for (int i = 0; i < cant; i++)
+                                                {
+                                                    Console.WriteLine("Dame el nombre, apellido y rut");
+                                                    n = Console.ReadLine();
+                                                    ln = Console.ReadLine();
+                                                    r = Console.ReadLine();
+                                                    Persona personaDepto = new Persona(n, ln, r, "Departamento", null, null);
+                                                    Departamento departamento = new Departamento("Departamento");
+                                                    listPersonas.Add(personaDepto);
+                                                    listDivisiones.Add(departamento);
+                                                }
+                                                break;
+                                            case "Seccion":
+                                                Console.WriteLine("Cuantas areas quiere añadir?");
+                                                cant = int.Parse(Console.ReadLine());
+                                                for (int i = 0; i < cant; i++)
+                                                {
+                                                    Console.WriteLine("Dame el nombre, apellido y rut");
+                                                    n = Console.ReadLine();
+                                                    ln = Console.ReadLine();
+                                                    r = Console.ReadLine();
+                                                    Persona personaSeccion = new Persona(n, ln, r, "Seccion", null, null);
+                                                    Seccion seccion = new Seccion("Seccion");
+                                                    listPersonas.Add(personaSeccion);
+                                                    listDivisiones.Add(seccion);
+                                                }
+                                                break;
+                                            case "Bloque":
+                                                Console.WriteLine("Cuantas areas quiere añadir?");
+                                                cant = int.Parse(Console.ReadLine());
+                                                for (int i = 0; i < cant; i++)
+                                                {
+                                                    Console.WriteLine("Dame el nombre, apellido  y rut");
+                                                    n = Console.ReadLine();
+                                                    ln = Console.ReadLine();
+                                                    r = Console.ReadLine();
+                                                    Persona personaBloque = new Persona(n, ln, r, "Bloque", null, null);
+                                                    Console.WriteLine("Cuanto personal hay?");
+                                                    int personal = int.Parse(Console.ReadLine());
+                                                    for (int p = 0; p < personal; p++)
+                                                    {
+                                                        Console.WriteLine("Dame el nombre, apellido, rut del personal y a que Bloque pertenecen(B1,B2,etc.)");
+                                                        n = Console.ReadLine();
+                                                        ln = Console.ReadLine();
+                                                        r = Console.ReadLine();
+                                                        pert = Console.ReadLine();
+
+                                                        Persona personaBloquepersonal = new Persona(n, ln, r, "Bloque", "Personal",pert);
+                                                        listPersonas.Add(personaBloquepersonal);
+                                                    }
+
+                                                    Bloque bloque = new Bloque("Bloque");
+                                                    listPersonas.Add(personaBloque);
+                                                    listDivisiones.Add(bloque);
+                                                }
+                                                x = false;
+                                                break;
+                                        }
+                                    } while (x == true);
+                                    listEmpresas.Add(new Empresa(nombre, Rut, listDivisiones, listPersonas));
                                     Save_Empresa_Main(listEmpresas);
                                     break;
                                 case "n":
@@ -62,49 +194,151 @@ namespace Lab6_POO_Diego_Pinochet
                         }
                         break;
                     case "n":
+                        Console.Clear();
                         if (File.Exists("empresas.bin") == true)
                         {
                             listEmpresas = Load_Empresa_Main();
                         }
+                        Console.WriteLine("Desea crear su empresa desde 0 (0) o utilizar el programa automático(1)?");
+                        string decision = Console.ReadLine();
+                        switch (decision)
+                        {
+                            case "0":
+                                List<Division> listDivision = new List<Division>();
+                                List<Persona> listPersona = new List<Persona>();
+                                Console.WriteLine("Ingrese el nombre de la empresa: ");
+                                string name = Console.ReadLine();
+                                Console.WriteLine("Ingrese el rut de la empresa: ");
+                                string rut = Console.ReadLine();
+                                bool y = true;
+                                do
+                                {
+                                    Console.WriteLine("Ingrese la división de su empresa (Area/Departamento/Seccion/Bloque): ");
+                                    string primeraDiv = Console.ReadLine();
+                                    string n;
+                                    string ln;
+                                    string r;
+                                    string pert;
+                                    int cant = 0;
+                                    switch (primeraDiv)
+                                    {
+                                        case "Area":
+                                            Console.WriteLine("Cuantas areas quiere añadir?");
+                                            cant = int.Parse(Console.ReadLine());
+                                            for (int i = 0; i < cant; i++)
+                                            {
+                                                Console.WriteLine("Dame el nombre, apellido y rut del encargado.");
+                                                n = Console.ReadLine();
+                                                ln = Console.ReadLine();
+                                                r = Console.ReadLine();
+                                                Persona personaArea = new Persona(n, ln, r, "Area", null,null);
+                                                Area area = new Area("Area");
+                                                listPersona.Add(personaArea);
+                                                listDivision.Add(area);
+                                            }
+                                            break;
+                                        case "Departamento":
+                                            Console.WriteLine("Cuantas areas quiere añadir?");
+                                            cant = int.Parse(Console.ReadLine());
+                                            for (int i = 0; i < cant; i++)
+                                            {
+                                                Console.WriteLine("Dame el nombre, apellido y rut");
+                                                n = Console.ReadLine();
+                                                ln = Console.ReadLine();
+                                                r = Console.ReadLine();
+                                                Persona personaDept = new Persona(n, ln, r, "Departamento", null,null);
+                                                Departamento departamento = new Departamento("Departamento");
+                                                listPersona.Add(personaDept);
+                                                listDivision.Add(departamento);
+                                            }
+                                            break;
+                                        case "Seccion":
+                                            Console.WriteLine("Cuantas areas quiere añadir?");
+                                            cant = int.Parse(Console.ReadLine());
+                                            for (int i = 0; i < cant; i++)
+                                            {
+                                                Console.WriteLine("Dame el nombre, apellido y rut");
+                                                n = Console.ReadLine();
+                                                ln = Console.ReadLine();
+                                                r = Console.ReadLine();
+                                                Persona personaSeccion = new Persona(n, ln, r, "Seccion", null,null);
+                                                Seccion seccion = new Seccion("Seccion");
+                                                listPersona.Add(personaSeccion);
+                                                listDivision.Add(seccion);
+                                            }
+                                            break;
+                                        case "Bloque":
+                                            Console.WriteLine("Cuantas areas quiere añadir?");
+                                            cant = int.Parse(Console.ReadLine());
+                                            for (int i = 0; i < cant; i++)
+                                            {
+                                                Console.WriteLine("Dame el nombre, apellido  y rut");
+                                                n = Console.ReadLine();
+                                                ln = Console.ReadLine();
+                                                r = Console.ReadLine();
+                                                Persona personaBloque = new Persona(n, ln, r, "Bloque", null,null);
+                                                Console.WriteLine("Cuanto personal hay?");
+                                                int personal = int.Parse(Console.ReadLine());
+                                                for (int p = 0; p < personal; p++)
+                                                {
+                                                    Console.WriteLine("Dame el nombre, apellido, rut del personal y a que Bloque pertenecen(B1,B2,etc.)");
+                                                    n = Console.ReadLine();
+                                                    ln = Console.ReadLine();
+                                                    r = Console.ReadLine();
+                                                    pert = Console.ReadLine();
+                                                    Persona personaBloquepersonal = new Persona(n, ln, r, "Bloque", "Personal", pert);
+                                                    listPersona.Add(personaBloquepersonal);
+                                                }
+                                                Bloque bloque = new Bloque("Bloque");
+                                                listPersona.Add(personaBloque);
+                                                listDivision.Add(bloque);
+                                            }
+                                            y = false;
+                                            break;
+                                    }
+                                } while (y == true);
+                                listEmpresas.Add(new Empresa(name, rut, listDivision, listPersona));
+                                Save_Empresa_Main(listEmpresas);
+                                break;
+                            case "1":
+                                List<Division> listDiv = new List<Division>();
+                                List<Persona> listPerson = new List<Persona>();
+                                Console.WriteLine("Ingrese el nombre de la empresa: ");
+                                string nom = Console.ReadLine();
+                                Console.WriteLine("Ingrese el rut de la empresa: ");
+                                string ruT = Console.ReadLine();
+                                Departamento depto = new Departamento("Departamento");
+                                Persona personaDepto = new Persona("Harry", "Potter", "105406789", "Departamento", null, null);
+                                listDiv.Add(depto);
+                                listPerson.Add(personaDepto);
 
-                        Console.WriteLine("Ingrese el nombre de la empresa: ");
-                        string name = Console.ReadLine();
-                        Console.WriteLine("Ingrese el rut de la empresa: ");
-                        string rut = Console.ReadLine();
-                        
-                        //Bloque:
-                        Persona personaBG = new Persona("Tomas", "Pinochet", "1010101", "Encargado");
+                                Seccion secc = new Seccion("Seccion");
+                                Persona personaSecc = new Persona("Hermionie", "Granger", "301876540", "Seccion", null,null);
+                                listDiv.Add(secc);
+                                listPerson.Add(personaSecc);
 
-                        Persona personaB1 = new Persona("Diego","Pinochet","201837396","Personal");
-                        Bloque bloque = new Bloque("Bloque 1",personaB1, personaBG);
+                                Bloque bloq1 = new Bloque("Bloque");
+                                Persona personaBE1 = new Persona("Ron","Weasley","109765432","Bloque",null,null);
+                                Persona personaBP1 = new Persona("Albus", "Dumbledore", "109765489", "Bloque", "Personal","B1");
+                                Persona personaBP2 = new Persona("Severus", "Snape", "214509090", "Bloque", "Personal","B1");
+                                listDiv.Add(bloq1);
+                                listPerson.Add(personaBE1);
+                                listPerson.Add(personaBP1);
+                                listPerson.Add(personaBP2);
 
-                        Persona personaB2 = new Persona("Matias", "Pinochet", "20202020", "Personal");
-                        Bloque bloque2 = new Bloque("Bloque 2", personaB2, personaBG);
+                                Bloque bloq2 = new Bloque("Bloque");
+                                Persona personaBE2 = new Persona("Drako", "Malfoy", "308976543", "Bloque", null,null);
+                                Persona personaBP12 = new Persona("Neville", "LongBottom", "207965431", "Bloque", "Personal","B2");
+                                Persona personaBP22 = new Persona("Tom", "Riddle", "015678956", "Bloque", "Personal","B2");
+                                listDiv.Add(bloq2);
+                                listPerson.Add(personaBE2);
+                                listPerson.Add(personaBP12);
+                                listPerson.Add(personaBP22);
 
-                        List<Bloque> listBloque = new List<Bloque>();
-
-
-                        //Seccion
-                        Persona personaSec = new Persona("Alvaro", "Leguer", "180907698", "Encargado");
-                        Seccion seccion = new Seccion("Sección 1",personaSec);
-
-                        List<Seccion> listSeccion = new List<Seccion>();
-                        
-                        listSeccion.Add(seccion);
-
-                        //Departamento
-                        Persona personaDep = new Persona("George", "Fuentes", "309087956", "Encargado");
-                        Departamento departamento = new Departamento("Departamento 1",personaDep);
-                        List<Departamento> listDep = new List<Departamento>();
-                        listDep.Add(departamento);
-
-
-
-                        //Console.WriteLine("Ingrese la primera división de su empresa (Area/Departamentos/Secciones/Bloques): ");
-                        //string division_empresa = Console.ReadLine();
-
-                        listEmpresas.Add(new Empresa(name, rut, listDivisiones));
-                        Save_Empresa_Main(listEmpresas);
+                                listEmpresas.Add(new Empresa(nom, ruT, listDiv, listPerson));
+                                Save_Empresa_Main(listEmpresas);
+                                break;
+                        }
                         break;
                 }
             } while (cargar_archivo != "s" && cargar_archivo != "n");
