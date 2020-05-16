@@ -9,9 +9,13 @@ namespace Lab6_POO_Diego_Pinochet
     [Serializable]
     public class Bloque:Division
     {
-        public Bloque(string Name)
+        private Persona personal;
+        private Persona encargado;
+        public Bloque(string Name, Persona Encargado, Persona Personal)
         {
             this.Name = Name;
+            this.personal = Personal;
+            this.encargado = Encargado;
         }
     }
 }

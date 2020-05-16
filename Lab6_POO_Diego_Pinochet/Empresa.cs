@@ -16,8 +16,9 @@ namespace Lab6_POO_Diego_Pinochet
         private string rut;
         private List<Division> listDivision;
 
-
-        
+        public string Name { get => name; }
+        public string Rut { get => rut; }
+        public List<Division> ListDivision { get => listDivision; }
 
         public Empresa(string Name, string Rut,List<Division> ListDivision)
         {
@@ -26,21 +27,5 @@ namespace Lab6_POO_Diego_Pinochet
             this.listDivision = ListDivision;
         }
         
-        public static void SaveDivision(List<Division> listDivision)
-        {
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream("empresas.bin", FileMode.Create, FileAccess.Write, FileShare.None); //Los guardo en el mismo archivo que en el de las empresas o que?
-            formatter.Serialize(stream, listDivision);
-            formatter.Serialize(stream, "\n");
-            stream.Close();
-        }
-        public static List<Division> LoadDivision()
-        {
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream("empresas.bin", FileMode.Create, FileAccess.Write, FileShare.None); //Los guardo en el mismo archivo que en el de las empresas o que?
-            List<Division> listDivision = (List<Division>)formatter.Deserialize(stream);
-            stream.Close();
-            return listDivision;
-        }
     }
 }

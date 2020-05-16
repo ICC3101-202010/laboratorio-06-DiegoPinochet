@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab6_POO_Diego_Pinochet
 {
-    class Persona
+    public class Persona
     {
         private string name;
         private string lastName;
@@ -14,6 +14,7 @@ namespace Lab6_POO_Diego_Pinochet
         private string job;
 
         public string Name { get => name; set => name = value; }
+        public string LastName { get => lastName; set => lastName = value; }
         public Persona(string Name, string LastName, string Rut, string Job)
         {
             this.name = Name;

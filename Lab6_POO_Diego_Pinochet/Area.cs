@@ -9,10 +9,14 @@ namespace Lab6_POO_Diego_Pinochet
     [Serializable]
     public class Area:Division
     {
-        private Dictionary<string, List<Departamento>> dicDepartamento;
-        public Area(string Name)
+        private List<Departamento> listDepartamentos;
+        private Persona encargado;
+        public Area(string Name, Persona Encargado)
         {
             this.Name = Name;
+            this.encargado = Encargado;
         }
+
+        public List<Departamento> ListDepartamentos { get => listDepartamentos; set => listDepartamentos = value; }
     }
 }
