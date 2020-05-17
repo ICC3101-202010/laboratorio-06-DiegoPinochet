@@ -1,7 +1,0 @@
-C:\Users\dppin\Desktop\Lab6_POO\Lab6_POO_Diego_Pinochet\bin\Debug\Lab6_POO_Diego_Pinochet.exe.config
-C:\Users\dppin\Desktop\Lab6_POO\Lab6_POO_Diego_Pinochet\bin\Debug\Lab6_POO_Diego_Pinochet.exe
-C:\Users\dppin\Desktop\Lab6_POO\Lab6_POO_Diego_Pinochet\bin\Debug\Lab6_POO_Diego_Pinochet.pdb
-C:\Users\dppin\Desktop\Lab6_POO\Lab6_POO_Diego_Pinochet\obj\Debug\Lab6_POO_Diego_Pinochet.csprojAssemblyReference.cache
-C:\Users\dppin\Desktop\Lab6_POO\Lab6_POO_Diego_Pinochet\obj\Debug\Lab6_POO_Diego_Pinochet.csproj.CoreCompileInputs.cache
-C:\Users\dppin\Desktop\Lab6_POO\Lab6_POO_Diego_Pinochet\obj\Debug\Lab6_POO_Diego_Pinochet.exe
-C:\Users\dppin\Desktop\Lab6_POO\Lab6_POO_Diego_Pinochet\obj\Debug\Lab6_POO_Diego_Pinochet.pdb
