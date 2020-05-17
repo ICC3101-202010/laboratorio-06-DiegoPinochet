@@ -35,8 +35,7 @@ namespace Lab6_POO_Diego_Pinochet
         public override string ToString()
         {
             string str;
-            if (dondeSon != null) str = "Nombre: " + name + ", Apellido: " + lastName + ", Rut: " + rut + ", Pertenece: " + dondeSon;
-            else str = "Nombre: " + name + ", Apellido: " + lastName + ", Rut: " + rut;
+            str = "Nombre: " + name + ", Apellido: " + lastName + ", Rut: " + rut + ", Pertenece: " + dondeSon;
 
             return str;
         }

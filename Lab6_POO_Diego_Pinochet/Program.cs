@@ -38,14 +38,11 @@ namespace Lab6_POO_Diego_Pinochet
                                 Console.WriteLine("--------------------------------------------------------------------");
                                 Console.WriteLine(empresa.ToString());
                                 Console.Write("\n");
-                                int contA = 0;
-                                int contD = 0;
-                                int contS = 0;
-                                int contB = 0;
+                                List<string> listString = new List<string>();
                                 foreach (Division division in empresa.ListDivision)
                                 {
 
-                                    //if (contA == 0 && contB == 0 && contD == 0 && contS == 0) //Agregar alguna manera para que no se repitan las mismas divisiones
+                                    if (listString.Contains(division.Name) == false) //Agregar alguna manera para que no se repitan las mismas divisiones
                                     {
                                         Console.Write(division.ToString());
                                         Console.WriteLine("\nEncargados: ");
@@ -69,12 +66,8 @@ namespace Lab6_POO_Diego_Pinochet
                                                 }
                                             }
                                         }
-
                                     }
-                                    if (division.Name == "Bloque") contB++;
-                                    else if (division.Name == "Seccion") contS++;
-                                    else if (division.Name == "Area") contA++;
-                                    else contD++;
+                                    listString.Add(division.Name);
 
 
                                 }
@@ -112,11 +105,12 @@ namespace Lab6_POO_Diego_Pinochet
                                                 cant = int.Parse(Console.ReadLine());
                                                 for (int i = 0; i < cant; i++)
                                                 {
-                                                    Console.WriteLine("Dame el nombre, apellido y rut del encargado.");
+                                                    Console.WriteLine("Dame el nombre, apellido rut y de que Area esta encargado(A1, A2, etc.).");
                                                     n = Console.ReadLine();
                                                     ln = Console.ReadLine();
                                                     r = Console.ReadLine();
-                                                    Persona personaArea = new Persona(n, ln, r, "Area", null, null);
+                                                    pert = Console.ReadLine();
+                                                    Persona personaArea = new Persona(n, ln, r, "Area", null, pert);
                                                     Area area = new Area("Area");
                                                     listPersonas.Add(personaArea);
                                                     listDivisiones.Add(area);
@@ -127,11 +121,12 @@ namespace Lab6_POO_Diego_Pinochet
                                                 cant = int.Parse(Console.ReadLine());
                                                 for (int i = 0; i < cant; i++)
                                                 {
-                                                    Console.WriteLine("Dame el nombre, apellido y rut");
+                                                    Console.WriteLine("Dame el nombre, apellido, rut y de que Departamento esta encargado(D1, D2, etc.).");
                                                     n = Console.ReadLine();
                                                     ln = Console.ReadLine();
                                                     r = Console.ReadLine();
-                                                    Persona personaDepto = new Persona(n, ln, r, "Departamento", null, null);
+                                                    pert = Console.ReadLine();
+                                                    Persona personaDepto = new Persona(n, ln, r, "Departamento", null, pert);
                                                     Departamento departamento = new Departamento("Departamento");
                                                     listPersonas.Add(personaDepto);
                                                     listDivisiones.Add(departamento);
@@ -142,11 +137,12 @@ namespace Lab6_POO_Diego_Pinochet
                                                 cant = int.Parse(Console.ReadLine());
                                                 for (int i = 0; i < cant; i++)
                                                 {
-                                                    Console.WriteLine("Dame el nombre, apellido y rut");
+                                                    Console.WriteLine("Dame el nombre, apellido, rut y de que Seccion esta encargado (S1, S2, etc.).");
                                                     n = Console.ReadLine();
                                                     ln = Console.ReadLine();
                                                     r = Console.ReadLine();
-                                                    Persona personaSeccion = new Persona(n, ln, r, "Seccion", null, null);
+                                                    pert = Console.ReadLine();
+                                                    Persona personaSeccion = new Persona(n, ln, r, "Seccion", null, pert);
                                                     Seccion seccion = new Seccion("Seccion");
                                                     listPersonas.Add(personaSeccion);
                                                     listDivisiones.Add(seccion);
@@ -157,11 +153,12 @@ namespace Lab6_POO_Diego_Pinochet
                                                 cant = int.Parse(Console.ReadLine());
                                                 for (int i = 0; i < cant; i++)
                                                 {
-                                                    Console.WriteLine("Dame el nombre, apellido  y rut");
+                                                    Console.WriteLine("Dame el nombre, apellido, rut y de que Bloque esta encargado (B1, B2, etc.).");
                                                     n = Console.ReadLine();
                                                     ln = Console.ReadLine();
                                                     r = Console.ReadLine();
-                                                    Persona personaBloque = new Persona(n, ln, r, "Bloque", null, null);
+                                                    pert = Console.ReadLine();
+                                                    Persona personaBloque = new Persona(n, ln, r, "Bloque", null, pert);
                                                     Console.WriteLine("Cuanto personal hay?");
                                                     int personal = int.Parse(Console.ReadLine());
                                                     for (int p = 0; p < personal; p++)
@@ -227,11 +224,12 @@ namespace Lab6_POO_Diego_Pinochet
                                             cant = int.Parse(Console.ReadLine());
                                             for (int i = 0; i < cant; i++)
                                             {
-                                                Console.WriteLine("Dame el nombre, apellido y rut del encargado.");
+                                                Console.WriteLine("Dame el nombre, apellido rut y de que Area esta encargado (A1, A2, etc.).");
                                                 n = Console.ReadLine();
                                                 ln = Console.ReadLine();
                                                 r = Console.ReadLine();
-                                                Persona personaArea = new Persona(n, ln, r, "Area", null,null);
+                                                pert = Console.ReadLine();
+                                                Persona personaArea = new Persona(n, ln, r, "Area", null,pert);
                                                 Area area = new Area("Area");
                                                 listPersona.Add(personaArea);
                                                 listDivision.Add(area);
@@ -242,11 +240,12 @@ namespace Lab6_POO_Diego_Pinochet
                                             cant = int.Parse(Console.ReadLine());
                                             for (int i = 0; i < cant; i++)
                                             {
-                                                Console.WriteLine("Dame el nombre, apellido y rut");
+                                                Console.WriteLine("Dame el nombre, apellido rut y de que Deártamento esta encargado (D1, D2, etc.).");
                                                 n = Console.ReadLine();
                                                 ln = Console.ReadLine();
                                                 r = Console.ReadLine();
-                                                Persona personaDept = new Persona(n, ln, r, "Departamento", null,null);
+                                                pert = Console.ReadLine();
+                                                Persona personaDept = new Persona(n, ln, r, "Departamento", null,pert);
                                                 Departamento departamento = new Departamento("Departamento");
                                                 listPersona.Add(personaDept);
                                                 listDivision.Add(departamento);
@@ -257,11 +256,12 @@ namespace Lab6_POO_Diego_Pinochet
                                             cant = int.Parse(Console.ReadLine());
                                             for (int i = 0; i < cant; i++)
                                             {
-                                                Console.WriteLine("Dame el nombre, apellido y rut");
+                                                Console.WriteLine("Dame el nombre, apellido rut y de que Seccion esta encargado (S1, S2, etc.).");
                                                 n = Console.ReadLine();
                                                 ln = Console.ReadLine();
                                                 r = Console.ReadLine();
-                                                Persona personaSeccion = new Persona(n, ln, r, "Seccion", null,null);
+                                                pert = Console.ReadLine();
+                                                Persona personaSeccion = new Persona(n, ln, r, "Seccion", null,pert);
                                                 Seccion seccion = new Seccion("Seccion");
                                                 listPersona.Add(personaSeccion);
                                                 listDivision.Add(seccion);
@@ -272,11 +272,12 @@ namespace Lab6_POO_Diego_Pinochet
                                             cant = int.Parse(Console.ReadLine());
                                             for (int i = 0; i < cant; i++)
                                             {
-                                                Console.WriteLine("Dame el nombre, apellido  y rut");
+                                                Console.WriteLine("Dame el nombre, apellido rut y de que Bloque esta encargado (B1, B2, etc.).");
                                                 n = Console.ReadLine();
                                                 ln = Console.ReadLine();
                                                 r = Console.ReadLine();
-                                                Persona personaBloque = new Persona(n, ln, r, "Bloque", null,null);
+                                                pert = Console.ReadLine();
+                                                Persona personaBloque = new Persona(n, ln, r, "Bloque", null,pert);
                                                 Console.WriteLine("Cuanto personal hay?");
                                                 int personal = int.Parse(Console.ReadLine());
                                                 for (int p = 0; p < personal; p++)
@@ -308,17 +309,17 @@ namespace Lab6_POO_Diego_Pinochet
                                 Console.WriteLine("Ingrese el rut de la empresa: ");
                                 string ruT = Console.ReadLine();
                                 Departamento depto = new Departamento("Departamento");
-                                Persona personaDepto = new Persona("Harry", "Potter", "105406789", "Departamento", null, null);
+                                Persona personaDepto = new Persona("Harry", "Potter", "105406789", "Departamento", null,"D1");
                                 listDiv.Add(depto);
                                 listPerson.Add(personaDepto);
 
                                 Seccion secc = new Seccion("Seccion");
-                                Persona personaSecc = new Persona("Hermionie", "Granger", "301876540", "Seccion", null,null);
+                                Persona personaSecc = new Persona("Hermionie", "Granger", "301876540", "Seccion", null,"S1");
                                 listDiv.Add(secc);
                                 listPerson.Add(personaSecc);
 
                                 Bloque bloq1 = new Bloque("Bloque");
-                                Persona personaBE1 = new Persona("Ron","Weasley","109765432","Bloque",null,null);
+                                Persona personaBE1 = new Persona("Ron","Weasley","109765432","Bloque",null,"B1");
                                 Persona personaBP1 = new Persona("Albus", "Dumbledore", "109765489", "Bloque", "Personal","B1");
                                 Persona personaBP2 = new Persona("Severus", "Snape", "214509090", "Bloque", "Personal","B1");
                                 listDiv.Add(bloq1);
@@ -327,7 +328,7 @@ namespace Lab6_POO_Diego_Pinochet
                                 listPerson.Add(personaBP2);
 
                                 Bloque bloq2 = new Bloque("Bloque");
-                                Persona personaBE2 = new Persona("Drako", "Malfoy", "308976543", "Bloque", null,null);
+                                Persona personaBE2 = new Persona("Drako", "Malfoy", "308976543", "Bloque", null,"B2");
                                 Persona personaBP12 = new Persona("Neville", "LongBottom", "207965431", "Bloque", "Personal","B2");
                                 Persona personaBP22 = new Persona("Tom", "Riddle", "015678956", "Bloque", "Personal","B2");
                                 listDiv.Add(bloq2);
