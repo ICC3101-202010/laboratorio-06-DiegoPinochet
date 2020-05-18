@@ -15,6 +15,7 @@ namespace Lab6_POO_Diego_Pinochet
         private string job;
         private string personal;
         private string dondeSon;
+        private string divSup;
 
         public string Name { get => name; set => name = value; }
         public string LastName { get => lastName; set => lastName = value; }
@@ -22,7 +23,7 @@ namespace Lab6_POO_Diego_Pinochet
         public string Personal { get => personal; set => personal = value; }
         public string DondeSon { get => dondeSon; set => dondeSon = value; }
 
-        public Persona(string Name, string LastName, string Rut, string Job, string Personal, string DondeSon)
+        public Persona(string Name, string LastName, string Rut, string Job, string Personal, string DondeSon,string DivSup)
         {
             this.name = Name;
             this.lastName = LastName;
@@ -30,13 +31,14 @@ namespace Lab6_POO_Diego_Pinochet
             this.Job = Job;
             this.Personal = Personal;
             this.dondeSon = DondeSon;
+            this.divSup = DivSup;
         }
 
         public override string ToString()
         {
             string str;
-            str = "Nombre: " + name + ", Apellido: " + lastName + ", Rut: " + rut + ", Pertenece: " + dondeSon;
-
+            if(divSup != null && divSup != "null") str = "Nombre: " + name + ", Apellido: " + lastName + ", Rut: " + rut + ", Pertenece: " + dondeSon + ", División superior: " + divSup;
+            else str = str = "Nombre: " + name + ", Apellido: " + lastName + ", Rut: " + rut + ", Pertenece: " + dondeSon;
             return str;
         }
 
